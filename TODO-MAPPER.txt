@@ -1,0 +1,15 @@
+1.1. use only (public/not static) (getters/setters)
+1.2 (final/synchronized) (getters/setters) are allowed
+
+TODO
+2. custom mappings
+2.1. allow registering custom converters by type
+2.2. allow registering custom converters by name, provided class
+2.3. date/timestamp automatic conversion is a separate setting
+
+4. match getter/setter by type is a separate setting
+
+5. map to map, map from map, convert map to map
+6. copy in depth
+
+7. sonar ???
