@@ -29,7 +29,6 @@ public final class ReflectionUtils {
     }
 
     /**
-     *
      * @param <T>
      * @param enclosingInstance
      * @param clazz
@@ -38,7 +37,7 @@ public final class ReflectionUtils {
      */
     @SuppressWarnings("unchecked")
     public static <T> ResultHolder<T> createInnerInstance(Object enclosingInstance,
-            Class<T> clazz) {
+                                                          Class<T> clazz) {
         ResultHolder<T> resultHolder = new ResultHolder<>(clazz);
         try {
             Constructor<T> noArgumentConstructor = ((Constructor<T>) ClassUtils
@@ -56,13 +55,12 @@ public final class ReflectionUtils {
     }
 
     /**
-     *
      * @param source
      * @param target
      * @return match between getters and a setters
      */
     public static Map<Method, Method> matchGettersWithSetters(Class<?> source,
-            Class<?> target) {
+                                                              Class<?> target) {
 
         Map<String, Method> getters = GettersUtils.getGetters(source);
         Map<String, Method> setters = SettersUtils.getSetters(target);
@@ -146,7 +144,6 @@ public final class ReflectionUtils {
     }
 
     /**
-     *
      * @param source
      * @param target
      * @return true if source equals target using java reflection based on

@@ -1,21 +1,20 @@
 package test.tests.beans.containers;
 
-import java.util.Map;
-
+import beans.random.BeanRandom;
 import org.junit.Test;
 
-import beans.random.BeanRandom;
+import java.util.Map;
 
 public class TestMap {
+
+    @Test(expected = RuntimeException.class)
+    public void test() {
+        BeanRandom.random(Bean.class);
+    }
 
     public static class Bean {
 
         @SuppressWarnings("unused")
         private Map<?, ?> map;
-    }
-
-    @Test(expected = RuntimeException.class)
-    public void test() {
-        BeanRandom.random(Bean.class);
     }
 }

@@ -5,7 +5,7 @@ import beans.mapper.Mapper;
 public class JavaGenerator {
 
     private static Class<?> getGeneratedClass(Class<?> sourceClass,
-            Class<?> destinationClass) {
+                                              Class<?> destinationClass) {
 
         SourceClass source = new SourceClass(sourceClass, destinationClass);
 
@@ -26,7 +26,7 @@ public class JavaGenerator {
 
     @SuppressWarnings("unchecked")
     public static <S, D> Mapper<S, D> buildConvertor(Class<S> source,
-            Class<D> destination) {
+                                                     Class<D> destination) {
         try {
             return (Mapper<S, D>) getGeneratedClass(source, destination)
                     .newInstance();

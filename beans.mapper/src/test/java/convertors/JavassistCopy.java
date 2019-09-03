@@ -1,17 +1,13 @@
 package convertors;
 
-import java.lang.reflect.Method;
-import java.util.Map;
-import java.util.concurrent.atomic.AtomicInteger;
-
-import javassist.ClassPool;
-import javassist.CtClass;
-import javassist.CtMethod;
-import javassist.CtNewMethod;
-import javassist.Modifier;
 import beans.mapper.Mapper;
 import beans.mapper.generators.java.GeneratorsUtils;
 import beans.reflection.ReflectionUtils;
+import javassist.*;
+
+import java.lang.reflect.Method;
+import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class JavassistCopy {
 
@@ -21,7 +17,7 @@ public class JavassistCopy {
 
     @SuppressWarnings("unchecked")
     public static <S, T> Mapper<S, T> getConverter(Class<S> source,
-            Class<T> target) {
+                                                   Class<T> target) {
 
         ClassPool pool = ClassPool.getDefault();
 
@@ -32,7 +28,7 @@ public class JavassistCopy {
 
         try {
             evalClass.setInterfaces(new CtClass[]{pool.get(Mapper.class
-                .getCanonicalName())});
+                    .getCanonicalName())});
         } catch (Exception e) {
             throw new RuntimeException("cannot add implemented interface", e);
         }
@@ -69,7 +65,7 @@ public class JavassistCopy {
                 + target.getCanonicalName()
                 + ") targetBean;"
                 + GeneratorsUtils.buildConversionMethodContent(map,
-                        sourceParameterName, targetParameterName) + "\n}";
+                sourceParameterName, targetParameterName) + "\n}";
     }
 
 }

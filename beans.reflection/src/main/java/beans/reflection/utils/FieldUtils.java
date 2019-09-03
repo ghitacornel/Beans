@@ -26,7 +26,6 @@ final public class FieldUtils {
     }
 
     /**
-     *
      * @param field
      * @param instance
      * @return value for field on instance regardless of access rights

@@ -26,6 +26,90 @@ final class PopulateBean {
         predefinedGenerators = new PredefinedGenerators(this.configuration);
     }
 
+    /**
+     * @param instance
+     * @param field
+     * @return
+     */
+    private static Object populateWithOverwrites(Object instance, Field field,
+                                                 Configuration configuration) {
+
+        // per class generator ?
+        {
+            Generator<?> generator = configuration.getOverwriteClass()
+                    .getGenerators().get(field.getType().getCanonicalName());
+            if (generator != null) {
+                Object value = generator.getValue();
+                FieldUtils.setFieldValue(field, value, instance);
+                return value;
+            }
+        }
+
+        // per field generator ?
+        {
+            Generator<?> generator = configuration.getOverwriteFields()
+                    .getFieldGenerators().get(field.getName());
+            if (generator != null) {
+                Object value = generator.getValue();
+                FieldUtils.setFieldValue(field, value, instance);
+                return value;
+            }
+        }
+
+        // per class field generator ?
+        {
+            Map<String, Generator<?>> classFieldGenerators = configuration
+                    .getOverwriteFields().getClassFieldsGenerators()
+                    .get(instance.getClass().getCanonicalName());
+            if (classFieldGenerators != null) {
+                Generator<?> generator = classFieldGenerators.get(field
+                        .getName());
+                if (generator != null) {
+                    Object value = generator.getValue();
+                    FieldUtils.setFieldValue(field, value, instance);
+                    return value;
+                }
+            }
+        }
+
+        return null;
+    }
+
+    private static Object populateFieldWithPredefined(Object instance,
+                                                      Field field, PredefinedGenerators predefinedGenerators) {
+        Object value = predefinedGenerators.generate(field.getType());
+        if (value != null) {
+            FieldUtils.setFieldValue(field, value, instance);
+        }
+        return value;
+    }
+
+    private static Object populateFieldWithCollection(Object instance,
+                                                      Field field, int size) {
+
+        Class<?> clazz = field.getType();
+
+        // TODO find a way to handle Maps
+        if (Map.class.isAssignableFrom(clazz)) {
+            throw new RuntimeException("Maps content cannot be generated");
+        }
+
+        // collections already instantiated are not re-created
+        if (Collection.class.isAssignableFrom(clazz)) {
+            Object object = FieldUtils.getFieldValue(field, instance);
+            if (object != null) {
+                return object;
+            }
+        }
+
+        Object object = CollectionGenerator.generate(clazz, size);
+        if (object != null) {
+            FieldUtils.setFieldValue(field, object, instance);
+        }
+
+        return object;
+    }
+
     public void populate(Object instance) {
         if (configuration.getInjectionStrategy() == InjectionStrategy.FIELD) {
             populateInstance(instance, 0);
@@ -115,90 +199,6 @@ final class PopulateBean {
         }
 
         populateFieldWithSimpleBean(instance, field, level + 1);
-    }
-
-    /**
-     * @param instance
-     * @param field
-     * @return
-     */
-    private static Object populateWithOverwrites(Object instance, Field field,
-                                                 Configuration configuration) {
-
-        // per class generator ?
-        {
-            Generator<?> generator = configuration.getOverwriteClass()
-                    .getGenerators().get(field.getType().getCanonicalName());
-            if (generator != null) {
-                Object value = generator.getValue();
-                FieldUtils.setFieldValue(field, value, instance);
-                return value;
-            }
-        }
-
-        // per field generator ?
-        {
-            Generator<?> generator = configuration.getOverwriteFields()
-                    .getFieldGenerators().get(field.getName());
-            if (generator != null) {
-                Object value = generator.getValue();
-                FieldUtils.setFieldValue(field, value, instance);
-                return value;
-            }
-        }
-
-        // per class field generator ?
-        {
-            Map<String, Generator<?>> classFieldGenerators = configuration
-                    .getOverwriteFields().getClassFieldsGenerators()
-                    .get(instance.getClass().getCanonicalName());
-            if (classFieldGenerators != null) {
-                Generator<?> generator = classFieldGenerators.get(field
-                        .getName());
-                if (generator != null) {
-                    Object value = generator.getValue();
-                    FieldUtils.setFieldValue(field, value, instance);
-                    return value;
-                }
-            }
-        }
-
-        return null;
-    }
-
-    private static Object populateFieldWithPredefined(Object instance,
-                                                      Field field, PredefinedGenerators predefinedGenerators) {
-        Object value = predefinedGenerators.generate(field.getType());
-        if (value != null) {
-            FieldUtils.setFieldValue(field, value, instance);
-        }
-        return value;
-    }
-
-    private static Object populateFieldWithCollection(Object instance,
-                                                      Field field, int size) {
-
-        Class<?> clazz = field.getType();
-
-        // TODO find a way to handle Maps
-        if (Map.class.isAssignableFrom(clazz)) {
-            throw new RuntimeException("Maps content cannot be generated");
-        }
-
-        // collections already instantiated are not re-created
-        if (Collection.class.isAssignableFrom(clazz)) {
-            Object object = FieldUtils.getFieldValue(field, instance);
-            if (object != null) {
-                return object;
-            }
-        }
-
-        Object object = CollectionGenerator.generate(clazz, size);
-        if (object != null) {
-            FieldUtils.setFieldValue(field, object, instance);
-        }
-
-        return object;
     }
 
     private void populateCollectionFieldWithElements(Field field, int level,

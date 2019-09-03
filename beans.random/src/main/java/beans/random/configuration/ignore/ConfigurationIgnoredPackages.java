@@ -11,7 +11,6 @@ import java.util.Set;
  * Ignoring a package will not ignore all it's sub packages
  *
  * @author cornel.ghita
- *
  */
 public class ConfigurationIgnoredPackages {
 
@@ -21,7 +20,6 @@ public class ConfigurationIgnoredPackages {
     final private Set<String> packages = new HashSet<>();
 
     /**
-     *
      * @return all package names that will be ignored
      */
     public Set<String> getPackages() {
@@ -29,7 +27,6 @@ public class ConfigurationIgnoredPackages {
     }
 
     /**
-     *
      * @param packageNames package names to be ignored
      */
     public void ignore(String... packageNames) {

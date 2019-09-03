@@ -8,7 +8,6 @@ import java.util.Set;
  * Configuration class with setting related to ignored {@link Class}es
  *
  * @author cornel.ghita
- *
  */
 public class ConfigurationIgnoredClasses {
 

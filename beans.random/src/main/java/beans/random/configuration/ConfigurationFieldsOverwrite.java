@@ -1,9 +1,9 @@
 package beans.random.configuration;
 
+import beans.random.generators.Generator;
+
 import java.util.HashMap;
 import java.util.Map;
-
-import beans.random.generators.Generator;
 
 public class ConfigurationFieldsOverwrite {
 
@@ -35,7 +35,7 @@ public class ConfigurationFieldsOverwrite {
     }
 
     public void registerClassGenerator(String classCanonicalName,
-            Generator<?> generator) {
+                                       Generator<?> generator) {
         classGenerators.put(classCanonicalName, generator);
     }
 
@@ -48,7 +48,7 @@ public class ConfigurationFieldsOverwrite {
     }
 
     public void register(String classCanonicalName, String fieldName,
-            Generator<?> generator) {
+                         Generator<?> generator) {
         Map<String, Generator<?>> map = classFieldGenerators
                 .get(classCanonicalName);
         if (map == null) {
@@ -59,7 +59,7 @@ public class ConfigurationFieldsOverwrite {
     }
 
     public void register(Class<?> clazz, String fieldName,
-            Generator<?> generator) {
+                         Generator<?> generator) {
         register(clazz.getCanonicalName(), fieldName, generator);
     }
 }

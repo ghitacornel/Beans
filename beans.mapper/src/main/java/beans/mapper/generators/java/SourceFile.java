@@ -1,14 +1,12 @@
 package beans.mapper.generators.java;
 
-import java.net.URI;
-
 import javax.tools.SimpleJavaFileObject;
+import java.net.URI;
 
 /**
  * The source file
  *
  * @author Cornel
- *
  */
 class SourceFile extends SimpleJavaFileObject {
 

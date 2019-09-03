@@ -1,8 +1,8 @@
 package convertors;
 
-import beans.mapper.Mapper;
 import beans.SourceBean;
 import beans.TargetBean;
+import beans.mapper.Mapper;
 
 final public class ManualCopy implements Mapper<Object, Object> {
 

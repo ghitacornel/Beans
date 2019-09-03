@@ -7,62 +7,6 @@ public class BeanWithInners {
     private PrivateStaticInnerBean privateStaticInnerBean;
     private PrivateInnerBean privateInnerBean;
 
-    public static class StaticInnerBean {
-
-        private String name;
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
-    }
-
-    public class InnerBean {
-
-        private String name;
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
-    }
-
-    private static class PrivateStaticInnerBean {
-
-        private String name;
-
-        @SuppressWarnings("unused")
-        public String getName() {
-            return name;
-        }
-
-        @SuppressWarnings("unused")
-        public void setName(String name) {
-            this.name = name;
-        }
-    }
-
-    private class PrivateInnerBean {
-
-        private String name;
-
-        @SuppressWarnings("unused")
-        public String getName() {
-            return name;
-        }
-
-        @SuppressWarnings("unused")
-        public void setName(String name) {
-            this.name = name;
-        }
-    }
-
     public StaticInnerBean getStaticInnerBean() {
         return staticInnerBean;
     }
@@ -93,6 +37,62 @@ public class BeanWithInners {
 
     public void setPrivateInnerBean(PrivateInnerBean privateInnerBean) {
         this.privateInnerBean = privateInnerBean;
+    }
+
+    public static class StaticInnerBean {
+
+        private String name;
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+    }
+
+    private static class PrivateStaticInnerBean {
+
+        private String name;
+
+        @SuppressWarnings("unused")
+        public String getName() {
+            return name;
+        }
+
+        @SuppressWarnings("unused")
+        public void setName(String name) {
+            this.name = name;
+        }
+    }
+
+    public class InnerBean {
+
+        private String name;
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+    }
+
+    private class PrivateInnerBean {
+
+        private String name;
+
+        @SuppressWarnings("unused")
+        public String getName() {
+            return name;
+        }
+
+        @SuppressWarnings("unused")
+        public void setName(String name) {
+            this.name = name;
+        }
     }
 
 }

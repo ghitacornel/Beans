@@ -15,66 +15,66 @@ import beans.random.generators.defaults.StringGenerator.StringConfiguration;
 
 class ConfigurationContainer {
 
-	final private ByteConfiguration byteConfiguration = new ByteConfiguration();
-	final private DoubleConfiguration doubleConfiguration = new DoubleConfiguration();
-	final private FloatConfiguration floatConfiguration = new FloatConfiguration();
-	final private IntegerConfiguration integerConfiguration = new IntegerConfiguration();
-	final private LongConfiguration longConfiguration = new LongConfiguration();
-	final private ShortConfiguration shortConfiguration = new ShortConfiguration();
+    final private ByteConfiguration byteConfiguration = new ByteConfiguration();
+    final private DoubleConfiguration doubleConfiguration = new DoubleConfiguration();
+    final private FloatConfiguration floatConfiguration = new FloatConfiguration();
+    final private IntegerConfiguration integerConfiguration = new IntegerConfiguration();
+    final private LongConfiguration longConfiguration = new LongConfiguration();
+    final private ShortConfiguration shortConfiguration = new ShortConfiguration();
 
-	final private CharacterConfiguration characterConfiguration = new CharacterConfiguration();
-	final private StringConfiguration stringConfiguration = new StringConfiguration();
-	final private DateConfiguration dateConfiguration = new DateConfiguration();
-	final private BigIntegerConfiguration bigIntegerConfiguration = new BigIntegerConfiguration();
-	final private BigDecimalConfiguration bigDecimalConfiguration = new BigDecimalConfiguration();
-	final private SequenceConfiguration sequenceConfiguration = new SequenceConfiguration();
+    final private CharacterConfiguration characterConfiguration = new CharacterConfiguration();
+    final private StringConfiguration stringConfiguration = new StringConfiguration();
+    final private DateConfiguration dateConfiguration = new DateConfiguration();
+    final private BigIntegerConfiguration bigIntegerConfiguration = new BigIntegerConfiguration();
+    final private BigDecimalConfiguration bigDecimalConfiguration = new BigDecimalConfiguration();
+    final private SequenceConfiguration sequenceConfiguration = new SequenceConfiguration();
 
-	public ByteConfiguration getByteConfiguration() {
-		return byteConfiguration;
-	}
+    public ByteConfiguration getByteConfiguration() {
+        return byteConfiguration;
+    }
 
-	public DoubleConfiguration getDoubleConfiguration() {
-		return doubleConfiguration;
-	}
+    public DoubleConfiguration getDoubleConfiguration() {
+        return doubleConfiguration;
+    }
 
-	public FloatConfiguration getFloatConfiguration() {
-		return floatConfiguration;
-	}
+    public FloatConfiguration getFloatConfiguration() {
+        return floatConfiguration;
+    }
 
-	public IntegerConfiguration getIntegerConfiguration() {
-		return integerConfiguration;
-	}
+    public IntegerConfiguration getIntegerConfiguration() {
+        return integerConfiguration;
+    }
 
-	public LongConfiguration getLongConfiguration() {
-		return longConfiguration;
-	}
+    public LongConfiguration getLongConfiguration() {
+        return longConfiguration;
+    }
 
-	public ShortConfiguration getShortConfiguration() {
-		return shortConfiguration;
-	}
+    public ShortConfiguration getShortConfiguration() {
+        return shortConfiguration;
+    }
 
-	public CharacterConfiguration getCharacterConfiguration() {
-		return characterConfiguration;
-	}
+    public CharacterConfiguration getCharacterConfiguration() {
+        return characterConfiguration;
+    }
 
-	public StringConfiguration getStringConfiguration() {
-		return stringConfiguration;
-	}
+    public StringConfiguration getStringConfiguration() {
+        return stringConfiguration;
+    }
 
-	public DateConfiguration getDateConfiguration() {
-		return dateConfiguration;
-	}
+    public DateConfiguration getDateConfiguration() {
+        return dateConfiguration;
+    }
 
-	public BigIntegerConfiguration getBigIntegerConfiguration() {
-		return bigIntegerConfiguration;
-	}
+    public BigIntegerConfiguration getBigIntegerConfiguration() {
+        return bigIntegerConfiguration;
+    }
 
-	public BigDecimalConfiguration getBigDecimalConfiguration() {
-		return bigDecimalConfiguration;
-	}
+    public BigDecimalConfiguration getBigDecimalConfiguration() {
+        return bigDecimalConfiguration;
+    }
 
-	public SequenceConfiguration getSequenceConfiguration() {
-		return sequenceConfiguration;
-	}
+    public SequenceConfiguration getSequenceConfiguration() {
+        return sequenceConfiguration;
+    }
 
 }

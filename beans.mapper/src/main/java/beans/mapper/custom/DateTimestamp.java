@@ -1,9 +1,9 @@
 package beans.mapper.custom;
 
+import beans.mapper.BidirectionalMapper;
+
 import java.sql.Timestamp;
 import java.util.Date;
-
-import beans.mapper.BidirectionalMapper;
 
 public class DateTimestamp implements BidirectionalMapper<Date, Timestamp> {
 

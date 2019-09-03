@@ -1,10 +1,9 @@
 package beans.mapper.generators.java;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.tools.JavaCompiler;
 import javax.tools.ToolProvider;
+import java.util.ArrayList;
+import java.util.List;
 
 class MemoryClassLoader extends ClassLoader {
 

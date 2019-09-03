@@ -7,7 +7,6 @@ import java.util.Date;
  * only getters/setters here
  *
  * @author cornel.ghita
- *
  */
 public class SourceBean extends AbstractSourceBean {
 

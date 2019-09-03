@@ -1,8 +1,8 @@
 package beans.random.generators.defaults;
 
-import java.util.Random;
-
 import beans.random.generators.Generator;
+
+import java.util.Random;
 
 public class BooleanGenerator implements Generator<Boolean> {
 

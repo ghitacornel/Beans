@@ -1,11 +1,10 @@
 package test.tests.beans.finals;
 
-import org.junit.Assert;
-import org.junit.Test;
-
-import test.beans.finals.BeanWithFinals;
 import beans.random.BeanRandom;
 import beans.random.configuration.Configuration;
+import org.junit.Assert;
+import org.junit.Test;
+import test.beans.finals.BeanWithFinals;
 
 public class TestFinals {
 

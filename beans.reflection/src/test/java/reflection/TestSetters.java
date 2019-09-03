@@ -1,14 +1,27 @@
 package reflection;
 
-import java.lang.reflect.Method;
-import java.util.Map;
-
+import beans.reflection.utils.SettersUtils;
 import org.junit.Assert;
 import org.junit.Test;
 
-import beans.reflection.utils.SettersUtils;
+import java.lang.reflect.Method;
+import java.util.Map;
 
 public class TestSetters {
+
+    @Test
+    public void testOneSetter() {
+        Map<String, Method> setters = SettersUtils.getSetters(BeanWithOneSetter.class);
+        Assert.assertEquals(1, setters.size());
+        Assert.assertNotNull(setters.get("Object"));
+        Assert.assertEquals("setObject", setters.get("Object").getName());
+    }
+
+    @Test
+    public void testNoSetters() {
+        Map<String, Method> setters = SettersUtils.getSetters(BeanWithNoSetters.class);
+        Assert.assertTrue(setters.isEmpty());
+    }
 
     private static class BeanWithOneSetter {
 
@@ -19,6 +32,10 @@ public class TestSetters {
     }
 
     private static class BeanWithNoSetters {
+
+        @SuppressWarnings("unused")
+        public static void setStaticObject(Object value) {
+        }
 
         @SuppressWarnings("unused")
         public void setObjectNoParameters() {
@@ -50,10 +67,6 @@ public class TestSetters {
         }
 
         @SuppressWarnings("unused")
-        public static void setStaticObject(Object value) {
-        }
-
-        @SuppressWarnings("unused")
         public void aMethod(Object value) {
         }
 
@@ -61,19 +74,5 @@ public class TestSetters {
         public void setVoid(Void value) {
         }
 
-    }
-
-    @Test
-    public void testOneSetter() {
-        Map<String, Method> setters = SettersUtils.getSetters(BeanWithOneSetter.class);
-        Assert.assertEquals(1, setters.size());
-        Assert.assertNotNull(setters.get("Object"));
-        Assert.assertEquals("setObject", setters.get("Object").getName());
-    }
-
-    @Test
-    public void testNoSetters() {
-        Map<String, Method> setters = SettersUtils.getSetters(BeanWithNoSetters.class);
-        Assert.assertTrue(setters.isEmpty());
     }
 }

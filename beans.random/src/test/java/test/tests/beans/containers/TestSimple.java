@@ -1,11 +1,10 @@
 package test.tests.beans.containers;
 
-import org.junit.Assert;
-import org.junit.Test;
-
-import test.beans.containers.simple.A;
 import beans.random.BeanRandom;
 import beans.random.configuration.Configuration;
+import org.junit.Assert;
+import org.junit.Test;
+import test.beans.containers.simple.A;
 
 public class TestSimple {
 

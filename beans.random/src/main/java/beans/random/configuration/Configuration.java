@@ -1,170 +1,167 @@
 package beans.random.configuration;
 
-import java.util.Set;
-
 import beans.random.configuration.ignore.ConfigurationIgnoredClasses;
 import beans.random.configuration.ignore.ConfigurationIgnoredFields;
 import beans.random.configuration.ignore.ConfigurationIgnoredPackages;
 import beans.random.configuration.overwrite.ConfigurationClassOverwrite;
 import beans.random.configuration.overwrite.ConfigurationFieldOverwrite;
 
+import java.util.Set;
+
 public class Configuration extends ConfigurationContainer {
 
-	private int containmentDepthLevel = Integer.MAX_VALUE;
-	private int collectionsSize = 5;
-	private InjectionStrategy injectionStrategy = InjectionStrategy.FIELD;
-	private FieldGenerationStrategy fieldGenerationStrategy = FieldGenerationStrategy.IGNORE;
+    final private ConfigurationIgnoredFields ignoredFields = new ConfigurationIgnoredFields();
+    final private ConfigurationIgnoredClasses ignoredClasses = new ConfigurationIgnoredClasses();
+    final private ConfigurationIgnoredPackages ignoredPackages = new ConfigurationIgnoredPackages();
+    final private ConfigurationFieldOverwrite overwriteFields = new ConfigurationFieldOverwrite();
+    final private ConfigurationClassOverwrite overwriteClasses = new ConfigurationClassOverwrite();
+    private int containmentDepthLevel = Integer.MAX_VALUE;
+    private int collectionsSize = 5;
+    private InjectionStrategy injectionStrategy = InjectionStrategy.FIELD;
+    private FieldGenerationStrategy fieldGenerationStrategy = FieldGenerationStrategy.IGNORE;
+    private boolean raiseExceptionWhenNonPublicClassesEncountered = false;
+    private boolean raiseExceptionWhenPublicNoArgumentConstructorIsNotFound = false;
+    // TODO
+    @SuppressWarnings("unused")
+    private Set<Class<?>> uninstantiableClasses;
+    // TODO
+    @SuppressWarnings("unused")
+    private Set<Class<?>> nonPublicClasses;
 
-	private boolean raiseExceptionWhenNonPublicClassesEncountered = false;
-	private boolean raiseExceptionWhenPublicNoArgumentConstructorIsNotFound = false;
+    public int getContainmentDepthLevel() {
+        return containmentDepthLevel;
+    }
 
-	final private ConfigurationIgnoredFields ignoredFields = new ConfigurationIgnoredFields();
-	final private ConfigurationIgnoredClasses ignoredClasses = new ConfigurationIgnoredClasses();
-	final private ConfigurationIgnoredPackages ignoredPackages = new ConfigurationIgnoredPackages();
-	final private ConfigurationFieldOverwrite overwriteFields = new ConfigurationFieldOverwrite();
-	final private ConfigurationClassOverwrite overwriteClasses = new ConfigurationClassOverwrite();
+    public Configuration setContainmentDepthLevel(int depthLevel) {
+        this.containmentDepthLevel = depthLevel;
+        return this;
+    }
 
-	// TODO
-	@SuppressWarnings("unused")
-	private Set<Class<?>> uninstantiableClasses;
-	// TODO
-	@SuppressWarnings("unused")
-	private Set<Class<?>> nonPublicClasses;
+    public int getCollectionsSize() {
+        return collectionsSize;
+    }
 
-	public int getContainmentDepthLevel() {
-		return containmentDepthLevel;
-	}
+    public void setCollectionsSize(int collectionsSize) {
+        this.collectionsSize = collectionsSize;
+    }
 
-	public Configuration setContainmentDepthLevel(int depthLevel) {
-		this.containmentDepthLevel = depthLevel;
-		return this;
-	}
+    public InjectionStrategy getInjectionStrategy() {
+        return injectionStrategy;
+    }
 
-	public int getCollectionsSize() {
-		return collectionsSize;
-	}
+    public void setInjectionStrategy(InjectionStrategy strategy) {
+        this.injectionStrategy = strategy;
+    }
 
-	public void setCollectionsSize(int collectionsSize) {
-		this.collectionsSize = collectionsSize;
-	}
+    public Configuration usePositiveNumbers() {
 
-	public InjectionStrategy getInjectionStrategy() {
-		return injectionStrategy;
-	}
+        getByteConfiguration().setMin((byte) 0);
+        getShortConfiguration().setMin((short) 0);
+        getIntegerConfiguration().setMin(0);
+        getLongConfiguration().setMin(0);
 
-	public void setInjectionStrategy(InjectionStrategy strategy) {
-		this.injectionStrategy = strategy;
-	}
+        getBigIntegerConfiguration().setSignum(1);
+        getBigDecimalConfiguration().setSignum(1);
 
-	public Configuration usePositiveNumbers() {
+        return this;
+    }
 
-		getByteConfiguration().setMin((byte) 0);
-		getShortConfiguration().setMin((short) 0);
-		getIntegerConfiguration().setMin(0);
-		getLongConfiguration().setMin(0);
+    public Configuration useNegativeNumbers() {
 
-		getBigIntegerConfiguration().setSignum(1);
-		getBigDecimalConfiguration().setSignum(1);
+        getByteConfiguration().setMax((byte) 0);
+        getShortConfiguration().setMax((short) 0);
+        getIntegerConfiguration().setMax(0);
+        getLongConfiguration().setMax(0);
 
-		return this;
-	}
+        getBigIntegerConfiguration().setSignum(-1);
+        getBigDecimalConfiguration().setSignum(-1);
 
-	public Configuration useNegativeNumbers() {
+        return this;
+    }
 
-		getByteConfiguration().setMax((byte) 0);
-		getShortConfiguration().setMax((short) 0);
-		getIntegerConfiguration().setMax(0);
-		getLongConfiguration().setMax(0);
+    public Configuration useStrictPositiveNumbers() {
 
-		getBigIntegerConfiguration().setSignum(-1);
-		getBigDecimalConfiguration().setSignum(-1);
+        getByteConfiguration().setMin((byte) 1);
+        getShortConfiguration().setMin((short) 1);
+        getIntegerConfiguration().setMin(1);
+        getLongConfiguration().setMin(1);
 
-		return this;
-	}
+        getFloatConfiguration().setMin(0);
+        getFloatConfiguration().setMax(1);
+        getDoubleConfiguration().setMin(0);
+        getDoubleConfiguration().setMax(1);
 
-	public Configuration useStrictPositiveNumbers() {
+        getBigIntegerConfiguration().setSignum(1);
+        getBigDecimalConfiguration().setSignum(1);
 
-		getByteConfiguration().setMin((byte) 1);
-		getShortConfiguration().setMin((short) 1);
-		getIntegerConfiguration().setMin(1);
-		getLongConfiguration().setMin(1);
+        return this;
+    }
 
-		getFloatConfiguration().setMin(0);
-		getFloatConfiguration().setMax(1);
-		getDoubleConfiguration().setMin(0);
-		getDoubleConfiguration().setMax(1);
+    public Configuration useStrictNegativeNumbers() {
 
-		getBigIntegerConfiguration().setSignum(1);
-		getBigDecimalConfiguration().setSignum(1);
+        getByteConfiguration().setMax((byte) -1);
+        getShortConfiguration().setMax((short) -1);
+        getIntegerConfiguration().setMax(-1);
+        getLongConfiguration().setMax(-1);
 
-		return this;
-	}
+        getFloatConfiguration().setMin(-1);
+        getFloatConfiguration().setMax(0);
+        getDoubleConfiguration().setMin(-1);
+        getDoubleConfiguration().setMax(0);
 
-	public Configuration useStrictNegativeNumbers() {
+        getBigIntegerConfiguration().setSignum(-1);
+        getBigDecimalConfiguration().setSignum(-1);
 
-		getByteConfiguration().setMax((byte) -1);
-		getShortConfiguration().setMax((short) -1);
-		getIntegerConfiguration().setMax(-1);
-		getLongConfiguration().setMax(-1);
+        return this;
+    }
 
-		getFloatConfiguration().setMin(-1);
-		getFloatConfiguration().setMax(0);
-		getDoubleConfiguration().setMin(-1);
-		getDoubleConfiguration().setMax(0);
+    public boolean raiseExceptionWhenNonPublicClassEncountered() {
+        return raiseExceptionWhenNonPublicClassesEncountered;
+    }
 
-		getBigIntegerConfiguration().setSignum(-1);
-		getBigDecimalConfiguration().setSignum(-1);
+    public Configuration raiseExceptionWhenNonPublicClassEncountered(
+            boolean raiseExceptionWhenNonPublicClassesEncountered) {
+        this.raiseExceptionWhenNonPublicClassesEncountered = raiseExceptionWhenNonPublicClassesEncountered;
+        return this;
+    }
 
-		return this;
-	}
+    public boolean raiseExceptionWhenPublicNoArgumentConstructorIsNotFound() {
+        return raiseExceptionWhenPublicNoArgumentConstructorIsNotFound;
+    }
 
-	public boolean raiseExceptionWhenNonPublicClassEncountered() {
-		return raiseExceptionWhenNonPublicClassesEncountered;
-	}
+    public Configuration raiseExceptionWhenPublicNoArgumentConstructorIsNotFound(
+            boolean raiseExceptionWhenNoDefaultConstructorIsFound) {
+        this.raiseExceptionWhenPublicNoArgumentConstructorIsNotFound = raiseExceptionWhenNoDefaultConstructorIsFound;
+        return this;
+    }
 
-	public Configuration raiseExceptionWhenNonPublicClassEncountered(
-			boolean raiseExceptionWhenNonPublicClassesEncountered) {
-		this.raiseExceptionWhenNonPublicClassesEncountered = raiseExceptionWhenNonPublicClassesEncountered;
-		return this;
-	}
+    public ConfigurationIgnoredFields getIgnoredFields() {
+        return ignoredFields;
+    }
 
-	public boolean raiseExceptionWhenPublicNoArgumentConstructorIsNotFound() {
-		return raiseExceptionWhenPublicNoArgumentConstructorIsNotFound;
-	}
+    public ConfigurationIgnoredClasses getIgnoredClasses() {
+        return ignoredClasses;
+    }
 
-	public Configuration raiseExceptionWhenPublicNoArgumentConstructorIsNotFound(
-			boolean raiseExceptionWhenNoDefaultConstructorIsFound) {
-		this.raiseExceptionWhenPublicNoArgumentConstructorIsNotFound = raiseExceptionWhenNoDefaultConstructorIsFound;
-		return this;
-	}
+    public ConfigurationIgnoredPackages getIgnoredPackages() {
+        return ignoredPackages;
+    }
 
-	public ConfigurationIgnoredFields getIgnoredFields() {
-		return ignoredFields;
-	}
+    public ConfigurationFieldOverwrite getOverwriteFields() {
+        return overwriteFields;
+    }
 
-	public ConfigurationIgnoredClasses getIgnoredClasses() {
-		return ignoredClasses;
-	}
+    public ConfigurationClassOverwrite getOverwriteClass() {
+        return overwriteClasses;
+    }
 
-	public ConfigurationIgnoredPackages getIgnoredPackages() {
-		return ignoredPackages;
-	}
+    public FieldGenerationStrategy getFieldGenerationStrategy() {
+        return fieldGenerationStrategy;
+    }
 
-	public ConfigurationFieldOverwrite getOverwriteFields() {
-		return overwriteFields;
-	}
-
-	public ConfigurationClassOverwrite getOverwriteClass() {
-		return overwriteClasses;
-	}
-
-	public FieldGenerationStrategy getFieldGenerationStrategy() {
-		return fieldGenerationStrategy;
-	}
-
-	public void setFieldGenerationStrategy(
-			FieldGenerationStrategy fieldGenerationStrategy) {
-		this.fieldGenerationStrategy = fieldGenerationStrategy;
-	}
+    public void setFieldGenerationStrategy(
+            FieldGenerationStrategy fieldGenerationStrategy) {
+        this.fieldGenerationStrategy = fieldGenerationStrategy;
+    }
 
 }

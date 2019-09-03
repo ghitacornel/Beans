@@ -1,39 +1,35 @@
 package test.convertors.performance;
 
-import java.util.Date;
-
-import org.dozer.DozerBeanMapper;
-import org.junit.BeforeClass;
-import org.junit.Ignore;
-import org.junit.Test;
-
-import convertors.JavassistCopy;
-import convertors.ManualCopy;
-import convertors.ManualTypedCopy;
-import convertors.ReflectionCopy;
 import beans.Factory;
 import beans.SourceBean;
 import beans.TargetBean;
 import beans.mapper.Mapper;
 import beans.mapper.generators.java.JavaGenerator;
+import convertors.JavassistCopy;
+import convertors.ManualCopy;
+import convertors.ManualTypedCopy;
+import convertors.ReflectionCopy;
+import org.dozer.DozerBeanMapper;
+import org.junit.BeforeClass;
+import org.junit.Ignore;
+import org.junit.Test;
+
+import java.util.Date;
 
 public class TestPerformance {
 
     private static final int steps = 1000;
     private static final int size = 1000;
-
-    private static SourceBean[] sourceBeans;
-    private static TargetBean[] targetBeans;
-
     final private static ManualCopy manualCopyConvertor = new ManualCopy();
     final private static ManualTypedCopy manualTypedCopyConvertor = new ManualTypedCopy();
     final private static ReflectionCopy reflectionConvertor = new ReflectionCopy();
-
     final private static Mapper<SourceBean, TargetBean> generatedConvertor = JavaGenerator
             .buildConvertor(SourceBean.class, TargetBean.class);
     final private static Mapper<SourceBean, TargetBean> javassistConvertor = JavassistCopy
             .getConverter(SourceBean.class, TargetBean.class);
     final private static DozerBeanMapper dozerConvertor = new DozerBeanMapper();
+    private static SourceBean[] sourceBeans;
+    private static TargetBean[] targetBeans;
 
     @BeforeClass
     public static void beforeAll() {

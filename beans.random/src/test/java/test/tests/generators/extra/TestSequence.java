@@ -1,14 +1,12 @@
 package test.tests.generators.extra;
 
+import beans.random.generators.configurations.SequenceConfiguration;
+import beans.random.generators.extra.SequenceGenerator;
 import org.junit.Assert;
 import org.junit.Test;
 
-import beans.random.generators.configurations.SequenceConfiguration;
-import beans.random.generators.extra.SequenceGenerator;
-
 /**
  * @author cornel.ghita
- *
  */
 public class TestSequence {
 

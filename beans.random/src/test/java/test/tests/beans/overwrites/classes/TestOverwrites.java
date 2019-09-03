@@ -1,23 +1,12 @@
 package test.tests.beans.overwrites.classes;
 
-import org.junit.Assert;
-import org.junit.Test;
-
 import beans.random.BeanRandom;
 import beans.random.configuration.Configuration;
 import beans.random.generators.Generator;
+import org.junit.Assert;
+import org.junit.Test;
 
 public class TestOverwrites {
-
-    public static class Bean {
-
-        Integer id;
-
-        Integer generated;
-
-        Integer witness;
-
-    }
 
     @Test
     public void testOk() {
@@ -63,6 +52,16 @@ public class TestOverwrites {
 
         Assert.assertNotNull(bean.witness);
         Assert.assertEquals(new Integer(2), bean.witness);
+
+    }
+
+    public static class Bean {
+
+        Integer id;
+
+        Integer generated;
+
+        Integer witness;
 
     }
 

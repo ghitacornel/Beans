@@ -1,22 +1,11 @@
 package test.tests.beans.ignored.fields;
 
+import beans.random.BeanRandom;
+import beans.random.configuration.Configuration;
 import org.junit.Assert;
 import org.junit.Test;
 
-import beans.random.BeanRandom;
-import beans.random.configuration.Configuration;
-
 public class TestIgnored {
-
-    public static class Bean {
-
-        String name;
-        Integer integer;
-        Boolean b;
-
-        String witness;
-
-    }
 
     @Test
     public void testOk() {
@@ -46,6 +35,16 @@ public class TestIgnored {
         Assert.assertNull(bean.b);
 
         Assert.assertNotNull(bean.witness);
+
+    }
+
+    public static class Bean {
+
+        String name;
+        Integer integer;
+        Boolean b;
+
+        String witness;
 
     }
 

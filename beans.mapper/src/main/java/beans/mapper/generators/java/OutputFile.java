@@ -1,15 +1,13 @@
 package beans.mapper.generators.java;
 
+import javax.tools.SimpleJavaFileObject;
 import java.io.ByteArrayOutputStream;
 import java.net.URI;
-
-import javax.tools.SimpleJavaFileObject;
 
 /**
  * Output class file
  *
  * @author Cornel
- *
  */
 class OutputFile extends SimpleJavaFileObject {
 

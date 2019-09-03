@@ -10,7 +10,6 @@ import java.util.Set;
  * generated for them
  *
  * @author cornel.ghita
- *
  */
 public class ConfigurationIgnoredClasses {
 
@@ -20,7 +19,6 @@ public class ConfigurationIgnoredClasses {
     final private Set<String> classes = new HashSet<>();
 
     /**
-     *
      * @return all classes that will be ignored
      */
     public Set<String> getClasses() {
@@ -28,7 +26,6 @@ public class ConfigurationIgnoredClasses {
     }
 
     /**
-     *
      * @param classCanonicalNames {@link Class} canonical names to be ignored
      */
     public void ignore(String... classCanonicalNames) {
@@ -36,7 +33,6 @@ public class ConfigurationIgnoredClasses {
     }
 
     /**
-     *
      * @param classes {@link Class}es to be ignored
      */
     public void ignore(Class<?>... classes) {

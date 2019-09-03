@@ -1,17 +1,16 @@
 package beans.mapper.generators.java;
 
+import beans.mapper.Mapper;
+import beans.reflection.ReflectionUtils;
+
 import java.lang.reflect.Method;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
-
-import beans.mapper.Mapper;
-import beans.reflection.ReflectionUtils;
 
 /**
  * The source code
  *
  * @author Cornel
- *
  */
 class SourceClass {
 
@@ -24,17 +23,15 @@ class SourceClass {
 
     final private Class<?> source;
     final private Class<?> target;
-
+    final private int id;
+    final private StringBuilder content = new StringBuilder("");
+    final private String className;
     public SourceClass(Class<?> source, Class<?> target) {
         id = count.getAndIncrement();
         className = CLASS_NAME + id;
         this.source = source;
         this.target = target;
     }
-
-    final private int id;
-    final private StringBuilder content = new StringBuilder("");
-    final private String className;
 
     private void addPackage() {
         content.append("package ").append(PACKAGE_NAME).append(";\n");
@@ -58,7 +55,7 @@ class SourceClass {
                 + targetParameterName
                 + "){"
                 + GeneratorsUtils.buildConversionMethodContent(map,
-                        sourceParameterName, targetParameterName) + "\n}";
+                sourceParameterName, targetParameterName) + "\n}";
     }
 
     private void addClassDeclaration(String body) {
@@ -70,7 +67,6 @@ class SourceClass {
     }
 
     /**
-     *
      * @return the source code
      */
     public String getContent() {

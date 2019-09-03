@@ -15,7 +15,6 @@ final public class GettersUtils {
     }
 
     /**
-     *
      * @param clazz
      * @return all getters mapped by property name
      */

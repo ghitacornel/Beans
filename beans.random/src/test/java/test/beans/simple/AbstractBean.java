@@ -8,7 +8,6 @@ import java.util.Date;
  * just to test inheritance
  *
  * @author cornel.ghita
- *
  */
 abstract class AbstractBean {
 

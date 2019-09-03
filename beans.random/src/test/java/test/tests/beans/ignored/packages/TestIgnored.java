@@ -1,24 +1,13 @@
 package test.tests.beans.ignored.packages;
 
-import java.sql.Timestamp;
-
+import beans.random.BeanRandom;
+import beans.random.configuration.Configuration;
 import org.junit.Assert;
 import org.junit.Test;
 
-import beans.random.BeanRandom;
-import beans.random.configuration.Configuration;
+import java.sql.Timestamp;
 
 public class TestIgnored {
-
-    public static class Bean {
-
-        String name;
-        Timestamp timestamp;
-        Boolean b;
-
-        String witness;
-
-    }
 
     @Test
     public void testOk() {
@@ -47,6 +36,16 @@ public class TestIgnored {
         Assert.assertNotNull(bean.b);
 
         Assert.assertNotNull(bean.witness);
+
+    }
+
+    public static class Bean {
+
+        String name;
+        Timestamp timestamp;
+        Boolean b;
+
+        String witness;
 
     }
 

@@ -1,13 +1,12 @@
 package beans.mapper.generators.java;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.tools.FileObject;
 import javax.tools.ForwardingJavaFileManager;
 import javax.tools.JavaCompiler;
 import javax.tools.JavaFileManager;
 import javax.tools.JavaFileObject.Kind;
+import java.util.HashMap;
+import java.util.Map;
 
 class MemoryFileManager extends ForwardingJavaFileManager<JavaFileManager> {
 
@@ -19,7 +18,7 @@ class MemoryFileManager extends ForwardingJavaFileManager<JavaFileManager> {
 
     @Override
     public OutputFile getJavaFileForOutput(Location location, String className,
-            Kind kind, FileObject source) {
+                                           Kind kind, FileObject source) {
 
         OutputFile outputFile = map.get(className);
 

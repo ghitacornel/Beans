@@ -1,34 +1,27 @@
 package beans.random.configuration;
 
 import java.lang.reflect.Field;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Configuration class with setting related to ignored {@link Field}s
  *
  * @author cornel.ghita
- *
  */
 public class ConfigurationIgnoredFields {
-
-    /**
-     * ignore final fields ?
-     */
-    private boolean ignoreFinals = true;
 
     /**
      * ignored fields by name regardless of class
      */
     final private Set<String> fields = new HashSet<>();
-
     /**
      * ignored class field names
      */
     final private Map<String, Set<String>> classFields = new HashMap<>();
+    /**
+     * ignore final fields ?
+     */
+    private boolean ignoreFinals = true;
 
     public boolean isIgnoreFinals() {
         return ignoreFinals;

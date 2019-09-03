@@ -14,7 +14,6 @@ public final class ClassUtils {
     }
 
     /**
-     *
      * @param clazz
      * @return all declared fields
      */
@@ -40,7 +39,6 @@ public final class ClassUtils {
     }
 
     /**
-     *
      * @param clazz
      * @return true if clazz is public, false otherwise
      */

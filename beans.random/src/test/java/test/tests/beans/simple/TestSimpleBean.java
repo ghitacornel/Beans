@@ -1,10 +1,9 @@
 package test.tests.beans.simple;
 
-import org.junit.Assert;
-import org.junit.Test;
-
 import beans.random.BeanRandom;
 import beans.random.configuration.Configuration;
+import org.junit.Assert;
+import org.junit.Test;
 import test.beans.simple.SimpleBean;
 
 public class TestSimpleBean {

@@ -1,15 +1,14 @@
 package reflection;
 
-import java.lang.reflect.Method;
-import java.util.Map;
-
-import org.junit.Assert;
-import org.junit.Test;
-
 import beans.SourceBean;
 import beans.reflection.ReflectionUtils;
 import beans.reflection.utils.GettersUtils;
 import beans.reflection.utils.SettersUtils;
+import org.junit.Assert;
+import org.junit.Test;
+
+import java.lang.reflect.Method;
+import java.util.Map;
 
 public class TestMapGettersSetters {
 

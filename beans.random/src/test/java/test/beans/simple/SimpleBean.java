@@ -20,7 +20,7 @@ public class SimpleBean extends AbstractBean {
     private Boolean boolean2;
     private Character char2;
 
-  // GETTERS/SETTERS are not important
+    // GETTERS/SETTERS are not important
     public byte getByte1() {
         return byte1;
     }

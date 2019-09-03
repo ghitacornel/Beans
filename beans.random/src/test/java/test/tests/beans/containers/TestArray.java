@@ -1,14 +1,13 @@
 package test.tests.beans.containers;
 
+import beans.random.BeanRandom;
+import beans.random.configuration.Configuration;
 import org.junit.Assert;
 import org.junit.Test;
-
 import test.beans.containers.array.A;
 import test.beans.containers.array.B;
 import test.beans.containers.array.C;
 import test.beans.containers.array.D;
-import beans.random.BeanRandom;
-import beans.random.configuration.Configuration;
 
 public class TestArray {
 

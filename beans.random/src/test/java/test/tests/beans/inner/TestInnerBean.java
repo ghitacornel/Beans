@@ -1,10 +1,9 @@
 package test.tests.beans.inner;
 
+import beans.random.BeanRandom;
 import org.junit.Assert;
 import org.junit.Test;
-
 import test.beans.inner.BeanWithInners;
-import beans.random.BeanRandom;
 
 public class TestInnerBean {
 

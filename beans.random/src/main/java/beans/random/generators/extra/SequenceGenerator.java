@@ -22,7 +22,7 @@ public class SequenceGenerator implements Generator<Long> {
 
         long nextValue = currentValue + configuration.getIncrement();
 
-		// condition 'nextValue < currentValue' is used for cases when nextValue
+        // condition 'nextValue < currentValue' is used for cases when nextValue
         // is greater than
         // Long.MAX_VALUE, hence reset to a negative value smaller than the
         // current one

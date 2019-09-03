@@ -1,18 +1,17 @@
 package test.convertors.correctness;
 
-import org.dozer.DozerBeanMapper;
-import org.junit.Assert;
-import org.junit.Test;
-
-import convertors.JavassistCopy;
-import convertors.ManualCopy;
-import convertors.ManualTypedCopy;
-import convertors.ReflectionCopy;
 import beans.SourceBean;
 import beans.TargetBean;
 import beans.mapper.generators.java.JavaGenerator;
 import beans.random.BeanRandom;
 import beans.reflection.ReflectionUtils;
+import convertors.JavassistCopy;
+import convertors.ManualCopy;
+import convertors.ManualTypedCopy;
+import convertors.ReflectionCopy;
+import org.dozer.DozerBeanMapper;
+import org.junit.Assert;
+import org.junit.Test;
 
 public class TestCorrectness {
 

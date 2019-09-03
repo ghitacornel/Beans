@@ -1,12 +1,12 @@
 package convertors;
 
-import java.lang.reflect.Method;
-import java.util.Map;
-
 import beans.SourceBean;
 import beans.TargetBean;
 import beans.mapper.Mapper;
 import beans.reflection.ReflectionUtils;
+
+import java.lang.reflect.Method;
+import java.util.Map;
 
 public class ReflectionCopy implements Mapper<SourceBean, TargetBean> {
 

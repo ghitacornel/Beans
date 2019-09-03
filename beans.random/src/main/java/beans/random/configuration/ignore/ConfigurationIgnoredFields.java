@@ -1,11 +1,7 @@
 package beans.random.configuration.ignore;
 
 import java.lang.reflect.Field;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Configuration that holds all to be ignored {@link Field}s<br>
@@ -13,27 +9,23 @@ import java.util.Set;
  * Fields to be ignored can be specified by name for certain {@link Class}es<br>
  *
  * @author cornel.ghita
- *
  */
 public class ConfigurationIgnoredFields {
 
+    /**
+     * ignored fields by name regardless of class
+     */
+    final private Set<String> fields = new HashSet<>();
+    /**
+     * ignored class field names
+     */
+    final private Map<String, Set<String>> classFields = new HashMap<>();
     /**
      * ignore final fields ?
      */
     private boolean ignoreFinals = true;
 
     /**
-     * ignored fields by name regardless of class
-     */
-    final private Set<String> fields = new HashSet<>();
-
-    /**
-     * ignored class field names
-     */
-    final private Map<String, Set<String>> classFields = new HashMap<>();
-
-    /**
-     *
      * @return if final fields are to be ignored or not
      */
     public boolean isIgnoreFinals() {
@@ -41,16 +33,14 @@ public class ConfigurationIgnoredFields {
     }
 
     /**
-     *
      * @param affectFinals specify if for final fields random values are to be
-     * generated or not
+     *                     generated or not
      */
     public void setIgnoreFinals(boolean affectFinals) {
         this.ignoreFinals = affectFinals;
     }
 
     /**
-     *
      * @return a set with all field names to be ignored for all classes
      */
     public Set<String> getFields() {
@@ -58,7 +48,6 @@ public class ConfigurationIgnoredFields {
     }
 
     /**
-     *
      * @return a map that links a class canonical name with a set of fields to
      * be ignored for it
      */
@@ -67,7 +56,6 @@ public class ConfigurationIgnoredFields {
     }
 
     /**
-     *
      * @param fieldNames class fields to be ignored by name
      */
     public void ignore(String... fieldNames) {
@@ -75,9 +63,8 @@ public class ConfigurationIgnoredFields {
     }
 
     /**
-     *
      * @param classCanonicalName class canonical name with fields to be ignored
-     * @param fieldName class field name to be ignored
+     * @param fieldName          class field name to be ignored
      */
     public void ignoreFieldForClass(String classCanonicalName, String fieldName) {
         Set<String> set = getClassFields().get(classCanonicalName);
@@ -89,8 +76,7 @@ public class ConfigurationIgnoredFields {
     }
 
     /**
-     *
-     * @param clazz class with fields to be ignored
+     * @param clazz     class with fields to be ignored
      * @param fieldName class field name to be ignored
      */
     public void ignoreFieldForClass(Class<?> clazz, String fieldName) {

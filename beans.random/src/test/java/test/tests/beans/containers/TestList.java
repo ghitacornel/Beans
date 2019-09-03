@@ -1,14 +1,13 @@
 package test.tests.beans.containers;
 
+import beans.random.BeanRandom;
+import beans.random.configuration.Configuration;
 import org.junit.Assert;
 import org.junit.Test;
-
 import test.beans.containers.list.A;
 import test.beans.containers.list.B;
 import test.beans.containers.list.C;
 import test.beans.containers.list.D;
-import beans.random.BeanRandom;
-import beans.random.configuration.Configuration;
 
 public class TestList {
 

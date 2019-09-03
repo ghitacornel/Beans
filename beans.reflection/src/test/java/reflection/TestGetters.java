@@ -1,14 +1,43 @@
 package reflection;
 
-import java.lang.reflect.Method;
-import java.util.Map;
-
+import beans.reflection.utils.GettersUtils;
 import org.junit.Assert;
 import org.junit.Test;
 
-import beans.reflection.utils.GettersUtils;
+import java.lang.reflect.Method;
+import java.util.Map;
 
 public class TestGetters {
+
+    @Test
+    public void testBoolean1() {
+        Map<String, Method> getters = GettersUtils.getGetters(Bean1.class);
+        Assert.assertEquals(1, getters.size());
+        Assert.assertNotNull(getters.get("Boolean"));
+        Assert.assertEquals("isBoolean", getters.get("Boolean").getName());
+    }
+
+    @Test
+    public void testBoolean2() {
+        Map<String, Method> getters = GettersUtils.getGetters(Bean2.class);
+        Assert.assertEquals(1, getters.size());
+        Assert.assertNotNull(getters.get("Boolean"));
+        Assert.assertEquals("getBoolean", getters.get("Boolean").getName());
+    }
+
+    @Test
+    public void testOneGetter() {
+        Map<String, Method> getters = GettersUtils.getGetters(BeanWithOneGetter.class);
+        Assert.assertEquals(1, getters.size());
+        Assert.assertNotNull(getters.get("Object"));
+        Assert.assertEquals("getObject", getters.get("Object").getName());
+    }
+
+    @Test
+    public void testNoGetters() {
+        Map<String, Method> getters = GettersUtils.getGetters(BeanWithNoGetters.class);
+        Assert.assertTrue(getters.isEmpty());
+    }
 
     private static class Bean1 {
 
@@ -40,6 +69,11 @@ public class TestGetters {
     private static class BeanWithNoGetters {
 
         @SuppressWarnings("unused")
+        public static Object getStaticObject() {
+            return null;
+        }
+
+        @SuppressWarnings("unused")
         public boolean getBoolean() {
             return true;
         }
@@ -65,11 +99,6 @@ public class TestGetters {
         }
 
         @SuppressWarnings("unused")
-        public static Object getStaticObject() {
-            return null;
-        }
-
-        @SuppressWarnings("unused")
         public Object getObjectWithReturn(Object parameter) {
             return null;
         }
@@ -89,35 +118,5 @@ public class TestGetters {
             return null;
         }
 
-    }
-
-    @Test
-    public void testBoolean1() {
-        Map<String, Method> getters = GettersUtils.getGetters(Bean1.class);
-        Assert.assertEquals(1, getters.size());
-        Assert.assertNotNull(getters.get("Boolean"));
-        Assert.assertEquals("isBoolean", getters.get("Boolean").getName());
-    }
-
-    @Test
-    public void testBoolean2() {
-        Map<String, Method> getters = GettersUtils.getGetters(Bean2.class);
-        Assert.assertEquals(1, getters.size());
-        Assert.assertNotNull(getters.get("Boolean"));
-        Assert.assertEquals("getBoolean", getters.get("Boolean").getName());
-    }
-
-    @Test
-    public void testOneGetter() {
-        Map<String, Method> getters = GettersUtils.getGetters(BeanWithOneGetter.class);
-        Assert.assertEquals(1, getters.size());
-        Assert.assertNotNull(getters.get("Object"));
-        Assert.assertEquals("getObject", getters.get("Object").getName());
-    }
-
-    @Test
-    public void testNoGetters() {
-        Map<String, Method> getters = GettersUtils.getGetters(BeanWithNoGetters.class);
-        Assert.assertTrue(getters.isEmpty());
     }
 }
