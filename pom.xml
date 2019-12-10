@@ -4,6 +4,7 @@
     <groupId>Beans</groupId>
     <artifactId>Beans</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -20,7 +21,6 @@
         </dependency>
     </dependencies>
 
-    <packaging>pom</packaging>
     <modules>
         <module>beans.reflection</module>
         <module>beans.random</module>

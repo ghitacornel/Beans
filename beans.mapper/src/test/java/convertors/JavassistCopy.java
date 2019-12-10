@@ -21,21 +21,18 @@ public class JavassistCopy {
 
         ClassPool pool = ClassPool.getDefault();
 
-        CtClass evalClass = pool.makeClass(JavassistCopy.class.getPackage()
-                .getName() + ".JavassistGenerated" + count.getAndIncrement());
+        CtClass evalClass = pool.makeClass(JavassistCopy.class.getPackage().getName() + ".JavassistGenerated" + count.getAndIncrement());
         evalClass.setModifiers(Modifier.FINAL);
         evalClass.setModifiers(Modifier.PUBLIC);
 
         try {
-            evalClass.setInterfaces(new CtClass[]{pool.get(Mapper.class
-                    .getCanonicalName())});
+            evalClass.setInterfaces(new CtClass[]{pool.get(Mapper.class.getCanonicalName())});
         } catch (Exception e) {
             throw new RuntimeException("cannot add implemented interface", e);
         }
 
         try {
-            CtMethod method = CtNewMethod.make(buildClassBody(source, target),
-                    evalClass);
+            CtMethod method = CtNewMethod.make(buildClassBody(source, target), evalClass);
             method.setModifiers(Modifier.FINAL);
             method.setModifiers(Modifier.PUBLIC);
             evalClass.addMethod(method);
@@ -44,15 +41,14 @@ public class JavassistCopy {
         }
 
         try {
-            return ((Mapper<S, T>) evalClass.toClass().newInstance());
+            return ((Mapper<S, T>) evalClass.toClass().getDeclaredConstructor().newInstance());
         } catch (Exception e) {
             throw new RuntimeException("cannot create instance", e);
         }
     }
 
     private static String buildClassBody(Class<?> source, Class<?> target) {
-        Map<Method, Method> map = ReflectionUtils.matchGettersWithSetters(
-                source, target);
+        Map<Method, Method> map = ReflectionUtils.matchGettersWithSetters(source, target);
         return "void map(Object sourceBean, Object targetBean){"
                 + "\n"
                 + source.getCanonicalName()
@@ -64,8 +60,8 @@ public class JavassistCopy {
                 + " target = ("
                 + target.getCanonicalName()
                 + ") targetBean;"
-                + GeneratorsUtils.buildConversionMethodContent(map,
-                sourceParameterName, targetParameterName) + "\n}";
+                + GeneratorsUtils.buildConversionMethodContent(map, sourceParameterName, targetParameterName)
+                + "\n}";
     }
 
 }
