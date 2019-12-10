@@ -21,27 +21,28 @@ public class JavassistCopy {
 
         ClassPool pool = ClassPool.getDefault();
 
-        CtClass evalClass = pool.makeClass(JavassistCopy.class.getPackage().getName() + ".JavassistGenerated" + count.getAndIncrement());
-        evalClass.setModifiers(Modifier.FINAL);
-        evalClass.setModifiers(Modifier.PUBLIC);
+        CtClass newClass = pool.makeClass(JavassistCopy.class.getPackage().getName() + ".JavassistGenerated" + count.getAndIncrement());
+        newClass.setModifiers(Modifier.FINAL);
+        newClass.setModifiers(Modifier.PUBLIC);
 
         try {
-            evalClass.setInterfaces(new CtClass[]{pool.get(Mapper.class.getCanonicalName())});
+            CtClass expectedInterface = pool.get(Mapper.class.getCanonicalName());
+            newClass.addInterface(expectedInterface);
         } catch (Exception e) {
             throw new RuntimeException("cannot add implemented interface", e);
         }
 
         try {
-            CtMethod method = CtNewMethod.make(buildClassBody(source, target), evalClass);
+            CtMethod method = CtNewMethod.make(buildClassBody(source, target), newClass);
             method.setModifiers(Modifier.FINAL);
             method.setModifiers(Modifier.PUBLIC);
-            evalClass.addMethod(method);
+            newClass.addMethod(method);
         } catch (Exception e) {
             throw new RuntimeException("cannot add method", e);
         }
 
         try {
-            return ((Mapper<S, T>) evalClass.toClass().getDeclaredConstructor().newInstance());
+            return ((Mapper<S, T>) newClass.toClass().getDeclaredConstructor().newInstance());
         } catch (Exception e) {
             throw new RuntimeException("cannot create instance", e);
         }
