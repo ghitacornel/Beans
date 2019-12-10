@@ -36,6 +36,7 @@ public class TestPerformance {
         System.out.println("Using " + size + " beans in " + steps + " steps");
         sourceBeans = Factory.generateRandomSourceBeans(size);
         targetBeans = Factory.generateRandomTargetBeans(size);
+        System.out.println("Generated " + size + " beans for " + steps + " steps");
     }
 
     @Test
