@@ -19,14 +19,12 @@ import java.util.Date;
 public class TestPerformance {
 
     private static final int steps = 1000;
-    private static final int size = 1000;
+    private static final int size = 10000;
     final private static ManualCopy manualCopyConvertor = new ManualCopy();
     final private static ManualTypedCopy manualTypedCopyConvertor = new ManualTypedCopy();
     final private static ReflectionCopy reflectionConvertor = new ReflectionCopy();
-    final private static Mapper<SourceBean, TargetBean> generatedConvertor = JavaGenerator
-            .buildConvertor(SourceBean.class, TargetBean.class);
-    final private static Mapper<SourceBean, TargetBean> javassistConvertor = JavassistCopy
-            .getConverter(SourceBean.class, TargetBean.class);
+    final private static Mapper<SourceBean, TargetBean> generatedConvertor = JavaGenerator.buildConvertor(SourceBean.class, TargetBean.class);
+    final private static Mapper<SourceBean, TargetBean> javassistConvertor = JavassistCopy.getConverter(SourceBean.class, TargetBean.class);
     final private static DozerBeanMapper dozerConvertor = new DozerBeanMapper();
     private static SourceBean[] sourceBeans;
     private static TargetBean[] targetBeans;
@@ -41,7 +39,6 @@ public class TestPerformance {
 
     @Test
     public void testManualCopyConvertor() {
-
         System.out.println("with " + manualCopyConvertor);
         Date start = new Date();
 
@@ -54,13 +51,11 @@ public class TestPerformance {
         }
 
         Date stop = new Date();
-        System.out.println("millis diff = "
-                + (stop.getTime() - start.getTime()));
+        System.out.println("millis diff = " + (stop.getTime() - start.getTime()));
     }
 
     @Test
     public void testManualCopyTypedConvertor() {
-
         System.out.println("with " + manualTypedCopyConvertor);
         Date start = new Date();
 
@@ -73,8 +68,7 @@ public class TestPerformance {
         }
 
         Date stop = new Date();
-        System.out.println("millis diff = "
-                + (stop.getTime() - start.getTime()));
+        System.out.println("millis diff = " + (stop.getTime() - start.getTime()));
     }
 
     @Ignore("timeout occurs")
@@ -93,8 +87,7 @@ public class TestPerformance {
         }
 
         Date stop = new Date();
-        System.out.println("millis diff = "
-                + (stop.getTime() - start.getTime()));
+        System.out.println("millis diff = " + (stop.getTime() - start.getTime()));
     }
 
     @Test
@@ -112,8 +105,7 @@ public class TestPerformance {
         }
 
         Date stop = new Date();
-        System.out.println("millis diff = "
-                + (stop.getTime() - start.getTime()));
+        System.out.println("millis diff = " + (stop.getTime() - start.getTime()));
     }
 
     @Test
@@ -131,8 +123,7 @@ public class TestPerformance {
         }
 
         Date stop = new Date();
-        System.out.println("millis diff = "
-                + (stop.getTime() - start.getTime()));
+        System.out.println("millis diff = " + (stop.getTime() - start.getTime()));
     }
 
     @Ignore("timeout occurs")
@@ -151,7 +142,6 @@ public class TestPerformance {
         }
 
         Date stop = new Date();
-        System.out.println("millis diff = "
-                + (stop.getTime() - start.getTime()));
+        System.out.println("millis diff = " + (stop.getTime() - start.getTime()));
     }
 }
