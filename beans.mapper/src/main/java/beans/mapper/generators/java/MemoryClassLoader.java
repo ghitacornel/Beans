@@ -13,8 +13,7 @@ class MemoryClassLoader extends ClassLoader {
     static {
         compiler = ToolProvider.getSystemJavaCompiler();
         if (compiler == null) {
-            throw new RuntimeException(
-                    "No compiler found, please run it under a JDK environment");
+            throw new RuntimeException("No compiler found, please run it under a JDK environment");
         }
     }
 

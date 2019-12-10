@@ -6,16 +6,13 @@ import java.net.URI;
 
 /**
  * Output class file
- *
- * @author Cornel
  */
 class OutputFile extends SimpleJavaFileObject {
 
     private final ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
     public OutputFile(String name, Kind kind) {
-        super(URI.create("memo:///" + name.replace('.', '/') + kind.extension),
-                kind);
+        super(URI.create("memo:///" + name.replace('.', '/') + kind.extension), kind);
     }
 
     public byte[] toByteArray() {

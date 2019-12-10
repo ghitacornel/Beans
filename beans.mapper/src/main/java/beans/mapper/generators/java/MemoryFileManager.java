@@ -17,8 +17,7 @@ class MemoryFileManager extends ForwardingJavaFileManager<JavaFileManager> {
     }
 
     @Override
-    public OutputFile getJavaFileForOutput(Location location, String className,
-                                           Kind kind, FileObject source) {
+    public OutputFile getJavaFileForOutput(Location location, String className, Kind kind, FileObject source) {
 
         OutputFile outputFile = map.get(className);
 

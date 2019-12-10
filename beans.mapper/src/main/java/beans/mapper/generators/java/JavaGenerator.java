@@ -7,11 +7,8 @@ public class JavaGenerator {
     private static Class<?> getGeneratedClass(Class<?> sourceClass, Class<?> destinationClass) {
 
         SourceClass source = new SourceClass(sourceClass, destinationClass);
-
         SourceFile sourceFile = new SourceFile(source.getCanonicalClassName(), source.getContent());
-
         MemoryClassLoader memoryClassLoader = new MemoryClassLoader(sourceFile);
-
         Thread.currentThread().setContextClassLoader(memoryClassLoader);
 
         try {
