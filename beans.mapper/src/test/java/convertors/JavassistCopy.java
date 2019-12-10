@@ -49,7 +49,7 @@ public class JavassistCopy {
 
     private static String buildClassBody(Class<?> source, Class<?> target) {
         Map<Method, Method> map = ReflectionUtils.matchGettersWithSetters(source, target);
-        return "public void map(Object sourceBean, Object targetBean){"
+        return "public void map(Object sourceBean, Object targetBean) {"
                 + "\n"
                 + source.getCanonicalName()
                 + " source = ("
