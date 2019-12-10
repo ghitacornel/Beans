@@ -4,13 +4,11 @@ import beans.mapper.Mapper;
 
 public class JavaGenerator {
 
-    private static Class<?> getGeneratedClass(Class<?> sourceClass,
-                                              Class<?> destinationClass) {
+    private static Class<?> getGeneratedClass(Class<?> sourceClass, Class<?> destinationClass) {
 
         SourceClass source = new SourceClass(sourceClass, destinationClass);
 
-        SourceFile sourceFile = new SourceFile(source.getCanonicalClassName(),
-                source.getContent());
+        SourceFile sourceFile = new SourceFile(source.getCanonicalClassName(), source.getContent());
 
         MemoryClassLoader memoryClassLoader = new MemoryClassLoader(sourceFile);
 
@@ -25,11 +23,9 @@ public class JavaGenerator {
     }
 
     @SuppressWarnings("unchecked")
-    public static <S, D> Mapper<S, D> buildConvertor(Class<S> source,
-                                                     Class<D> destination) {
+    public static <S, D> Mapper<S, D> buildConvertor(Class<S> source, Class<D> destination) {
         try {
-            return (Mapper<S, D>) getGeneratedClass(source, destination)
-                    .newInstance();
+            return (Mapper<S, D>) getGeneratedClass(source, destination).getDeclaredConstructor().newInstance();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
