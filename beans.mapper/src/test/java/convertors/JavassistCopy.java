@@ -16,8 +16,7 @@ public class JavassistCopy {
     final private static AtomicInteger count = new AtomicInteger();
 
     @SuppressWarnings("unchecked")
-    public static <S, T> Mapper<S, T> getConverter(Class<S> source,
-                                                   Class<T> target) {
+    public static <S, T> Mapper<S, T> getConverter(Class<S> source, Class<T> target) {
 
         ClassPool pool = ClassPool.getDefault();
 

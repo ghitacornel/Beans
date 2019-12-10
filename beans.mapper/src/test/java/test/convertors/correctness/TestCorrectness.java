@@ -51,8 +51,7 @@ public class TestCorrectness {
 
         SourceBean source = new SourceBean();
         TargetBean target = new TargetBean();
-        JavaGenerator.buildConvertor(SourceBean.class, TargetBean.class).map(
-                source, target);
+        JavaGenerator.buildConvertor(SourceBean.class, TargetBean.class).map(source, target);
 
         Assert.assertTrue(ReflectionUtils.equalsReflection(source, target));
 
@@ -63,8 +62,7 @@ public class TestCorrectness {
 
         SourceBean source = new SourceBean();
         TargetBean target = new TargetBean();
-        JavassistCopy.getConverter(SourceBean.class, TargetBean.class).map(
-                source, target);
+        JavassistCopy.getConverter(SourceBean.class, TargetBean.class).map(source, target);
 
         Assert.assertTrue(ReflectionUtils.equalsReflection(source, target));
 
