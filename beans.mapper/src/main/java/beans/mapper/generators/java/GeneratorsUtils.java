@@ -9,15 +9,7 @@ final public class GeneratorsUtils {
         // helper
     }
 
-    /**
-     * @param map
-     * @param getters
-     * @param source  source parameter name
-     * @param target  destination parameter name
-     * @return
-     */
-    public static String buildConversionMethodContent(Map<Method, Method> map,
-                                                      String source, String target) {
+    public static String buildConversionMethodContent(Map<Method, Method> map, String source, String target) {
 
         StringBuilder builder = new StringBuilder();
 
@@ -33,8 +25,7 @@ final public class GeneratorsUtils {
                 } else {
 
                     // primitive = class
-                    builder.append("if(" + source + "." + getter.getName()
-                            + "()==null)");
+                    builder.append("if(" + source + "." + getter.getName() + "()==null)");
                     builder.append(target + ".");
                     builder.append(setter.getName());
                     if (setterParameterType.equals(boolean.class))
@@ -58,8 +49,7 @@ final public class GeneratorsUtils {
                     builder.append("(");
                     builder.append(source + ".");
                     builder.append(getter.getName());
-                    builder.append("()." + setterParameterType.getName()
-                            + "Value()");
+                    builder.append("()." + setterParameterType.getName() + "Value()");
                     builder.append(");");
 
                 }
@@ -70,8 +60,7 @@ final public class GeneratorsUtils {
                     if (setterParameterType.equals(Float.class)) {
                         builder.append(target + ".");
                         builder.append(setter.getName());
-                        builder.append("(new " + setterParameterType.getName()
-                                + "(");
+                        builder.append("(new " + setterParameterType.getName() + "(");
                         builder.append(source + ".");
                         builder.append(getter.getName());
                         builder.append("())");
@@ -79,8 +68,7 @@ final public class GeneratorsUtils {
                     } else if (setterParameterType.equals(Double.class)) {
                         builder.append(target + ".");
                         builder.append(setter.getName());
-                        builder.append("(new " + setterParameterType.getName()
-                                + "(");
+                        builder.append("(new " + setterParameterType.getName() + "(");
                         builder.append(source + ".");
                         builder.append(getter.getName());
                         builder.append("())");
@@ -88,8 +76,7 @@ final public class GeneratorsUtils {
                     } else {
                         builder.append(target + ".");
                         builder.append(setter.getName());
-                        builder.append("(" + setterParameterType.getName()
-                                + ".valueOf(");
+                        builder.append("(" + setterParameterType.getName() + ".valueOf(");
                         builder.append(source + ".");
                         builder.append(getter.getName());
                         builder.append("())");
@@ -104,18 +91,15 @@ final public class GeneratorsUtils {
                     if (getterReturnType.isAssignableFrom(Date.class)
                             && !getterReturnType.equals(setterParameterType)) {
 
-                        builder.append("if(" + source + "." + getter.getName()
-                                + "()==null)");
+                        builder.append("if(" + source + "." + getter.getName() + "()==null)");
                         builder.append(target + ".");
                         builder.append(setter.getName());
                         builder.append("(null);");
                         builder.append("else ");
                         builder.append(target + ".");
                         builder.append(setter.getName());
-                        builder.append("(new "
-                                + setterParameterType.getCanonicalName() + "(");
-                        builder.append(source + "." + getter.getName()
-                                + "().getTime()");
+                        builder.append("(new " + setterParameterType.getCanonicalName() + "(");
+                        builder.append(source + "." + getter.getName() + "().getTime()");
                         builder.append("));");
 
                     } else {
@@ -143,14 +127,8 @@ final public class GeneratorsUtils {
     }
 
     private static List<Method> sortByName(Set<Method> set) {
-        List<Method> list = new ArrayList<Method>(set);
-        Collections.sort(list, new Comparator<Method>() {
-
-            public int compare(Method o1, Method o2) {
-                return o1.getName().compareTo(o2.getName());
-            }
-
-        });
+        List<Method> list = new ArrayList<>(set);
+        list.sort(Comparator.comparing(Method::getName));
         return list;
     }
 }
