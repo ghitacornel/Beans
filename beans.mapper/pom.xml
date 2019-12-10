@@ -9,10 +9,9 @@
     <artifactId>beans.mapper</artifactId>
     <dependencies>
         <dependency>
-            <groupId>javassist</groupId>
+            <groupId>org.javassist</groupId>
             <artifactId>javassist</artifactId>
-            <version>3.12.1.GA</version>
-            <scope>test</scope>
+            <version>3.25.0-GA</version>
         </dependency>
         <dependency>
             <groupId>net.sf.dozer</groupId>
